@@ -1,5 +1,6 @@
 .full-card {
   height: 100%;
+  border-width: 0px 1px 0px 0px !important;
 }
 
 .card-top {
