@@ -2,8 +2,13 @@
   height: 100%;
 }
 
+.card-top {
+  margin-bottom: 25px;
+}
+
 .card-inside {
   width: 30vw;
+  padding: 30px !important;
 }
 
 .square-corner {
@@ -19,7 +24,7 @@
 }
 
 .left-margin {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .text-bold {

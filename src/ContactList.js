@@ -16,12 +16,9 @@ class ContactList extends React.Component {
 
   contactClicked(id) {
     this.setState({ selectedId: id })
-
   }
 
   componentWillReceiveProps(nextProps) {
-//    console.log(nextProps.users)
-    
     this.setState({
       users: nextProps.users,
       isMobileDevice: nextProps.isMobileDevice,
@@ -29,10 +26,8 @@ class ContactList extends React.Component {
   }
 
   render() {
-    console.log(this.state.isMobileDevice)
-    console.log("Rerendering contact list")
-    const listItems = this.state.users == null ? (<div>Test</div>) : this.state.users.map((user) =>
-      <ListGroup.Item id={"listItem"+user.id} className="list-item" action onClick={() => this.contactClicked(user.id)}>
+    const listItems = this.state.users == null ? (<div/>) : this.state.users.map((user) =>
+      <ListGroup.Item key={"listItem"+user.id} className="list-item" action onClick={() => this.contactClicked(user.id)}>
         <div className="flex align-center">
           <AvatarText name={user.name} width="40"/>
           <div className="left-margin">

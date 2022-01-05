@@ -10,31 +10,37 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      users: null
+      users: null,
+      isMobileDevice: window.innerWidth < 1000
     };
   }
 
   componentDidMount() {
+
+    // get user data
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(response => response.json())
     .then(json => {
       this.setState({
         users: json
-      },
-      () => {
-        console.log("Fetched users; set state")
       })
     })
 
+    // dynamically render on resize
+    window.addEventListener('resize', () => {
+      this.setState({
+        isMobileDevice: window.innerWidth < 1000
+      })
+    })
   }
 
   render() {
-    console.log(window.screen.availWidth)
+    console.log(this.state)
     return (
       <div className="App">
         <MainNavbar />
         <div className="App-header">
-          <ContactList users={this.state.users} isMobileDevice={window.screen.availWidth < 1000}/>
+          <ContactList users={this.state.users} isMobileDevice={this.state.isMobileDevice}/>
         </div>
       </div>
     );

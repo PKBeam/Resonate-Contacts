@@ -7,11 +7,10 @@ function ContactDetails(props) {
   if (user == null) {
     return (<div/>)
   }
-  console.log(props.isMobileDevice)
   return (
   <Card className="full-card square-corner">
     <Card.Body className={props.isMobileDevice ? "" : "card-inside"}>
-      <div className="flex">
+      <div className="flex card-top">
         <div className="flex align-start">
           <AvatarText name={user.name} width="50"/>
         </div>

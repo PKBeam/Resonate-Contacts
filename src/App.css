@@ -1,13 +1,12 @@
 .App {
-  min-height: 100vh;
   background-color: #282c34;
 }
 
 .App-header {
   display: flex;
   overflow: hidden;
+  height: calc(100vh - 60px);
   flex-direction: row;
-  min-height: 95vh;
   min-width: 100%;
 /*  align-items: center;*/
   justify-content: center;
