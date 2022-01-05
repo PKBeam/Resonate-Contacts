@@ -1,25 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
+import MainNavbar from './MainNavbar.js';
+import ContactList from './ContactList.js';
+import ContactDetails from './ContactDetails.js';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      users: null
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(json => {
+      this.setState({
+        users: json
+      },
+      () => {
+        console.log("Fetched users; set state")
+      })
+    })
+
+  }
+
+  render() {
+    console.log(window.screen.availWidth)
+    return (
+      <div className="App">
+        <MainNavbar />
+        <div className="App-header">
+          <ContactList users={this.state.users} isMobileDevice={window.screen.availWidth < 1000}/>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

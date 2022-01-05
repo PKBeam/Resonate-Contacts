@@ -1,0 +1,21 @@
+.avatar {
+  display: flex;
+  background-color: #282c34;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-avatar {
+/*    margin-right: 10px;*/
+}
+
+.square {
+  height: auto;
+}
+
+.avatar-text {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+}
