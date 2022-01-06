@@ -6,9 +6,14 @@ function ContactDetails(props) {
   const user = props.user
 
   if (user == null) {
-    return null
+    return (
+      <Card className="full-card square-corner">
+        <Card.Body className={props.isMobileDevice ? "" : "card-inside"}>
+        </Card.Body>
+      </Card>
+    )
   }
-
+  
   const emailDisplay = (
     <tr>
       <td className="fixed-column-width text-bold text-muted">Email:</td>

@@ -34,6 +34,7 @@
 .full-card {
     height: 100%;
     border-width: 0px !important;
+
 }
 
 .mr-5 {
@@ -50,7 +51,23 @@
 
 .contact-list {
     word-wrap: break-word;
-    max-width: min(250px, 40%);
+/*    width: min(250px, 40%);*/
     max-height: calc(100vh - 60px);
-    overflow-y: scroll;
+
+}
+
+.scrollable {
+  overflow-y: scroll;
+}
+
+.search-bar {
+  
+}
+
+.search-bar-icon {
+  padding: 0px 3px !important;
+}
+
+.search-bar-card {
+  border-left: 0px !important;
 }

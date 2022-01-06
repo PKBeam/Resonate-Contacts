@@ -1,4 +1,4 @@
-import { Card, ListGroup, Form} from 'react-bootstrap';
+import { InputGroup, Card, ListGroup, Form} from 'react-bootstrap';
 import './ContactList.css';
 import AvatarText from './AvatarText.js';
 import ContactDetails from './ContactDetails.js';
@@ -10,7 +10,8 @@ class ContactList extends React.Component {
     this.state = {
       users: props.users,
       isMobileDevice: props.isMobileDevice,
-      selectedId: 1
+      selectedId: 1,
+      searchTerm: ""
     }
   }
 
@@ -18,7 +19,8 @@ class ContactList extends React.Component {
     return {
       users: props.users,
       isMobileDevice: props.isMobileDevice,
-      selectedId: state.selectedId
+      selectedId: state.selectedId,
+      searchTerm: state.searchTerm
     }
   }
 
@@ -26,14 +28,27 @@ class ContactList extends React.Component {
     this.setState({ selectedId: id })
   }
 
+  searchForContact(query) {
+    this.setState({ searchTerm: query })
+  }
+
   render() {
 
-    const users = this.state.users
+    var users = this.state.users
 
     if (users == null) {
       return null
     }
 
+    // apply search term
+    if (this.state.searchTerm != "") {
+      users = users.filter((u) => {
+        const name = u.name.toUpperCase()
+        const searchTerm = this.state.searchTerm.toUpperCase()
+        return name.search(searchTerm) != -1
+      })
+    }
+  
     // sort users by last name
     const sortedUsers = users.sort((u1, u2) => {
       const u1Lastname = u1.name.split(" ").pop()
@@ -46,7 +61,6 @@ class ContactList extends React.Component {
         return 0
       }
     })
-    console.log(sortedUsers)
 
     const listItems = users.map((user) =>
       <ListGroup.Item key={"listItem"+user.id} className="list-item" action onClick={() => this.contactClicked(user.id)}>
@@ -64,16 +78,27 @@ class ContactList extends React.Component {
       return u.id == this.state.selectedId}
     )
 
+    const contactListWidth = this.state.isMobileDevice ? "250px" : "40%";
+    const searchBar = (
+      <Card className="square-corner p-2 search-bar-card">
+         <InputGroup className="search-bar">
+          <InputGroup.Text className="search-bar-icon">🔍</InputGroup.Text>
+          <Form.Control size="sm" placeholder="Search name" onChange={(input) => {this.searchForContact(input.target.value)}}/>
+        </InputGroup>
+      </Card>
+    )
     return (
       <div className="flex">
-        <div className="contact-list">
-          <Card className="full-card square-corner">
+        <div className="contact-list" style={{width: {contactListWidth}}}>
+          {this.state.isMobileDevice ? "" : searchBar}
+          <Card className="full-card scrollable square-corner">
             <ListGroup className="square-corner" variant="flush">
               {listItems}
             </ListGroup>
           </Card>
         </div>
         <div className="contact-details">
+          {this.state.isMobileDevice ? searchBar : ""}
           <ContactDetails user={selectedUser} isMobileDevice={this.state.isMobileDevice}/>
         </div>
       </div>
