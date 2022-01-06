@@ -31,6 +31,10 @@
   margin-left: 15px;
 }
 
+.top-padding {
+  padding: 5px 0px 0px 0px !important;
+}
+
 .text-bold {
   font-weight: 500;
 }

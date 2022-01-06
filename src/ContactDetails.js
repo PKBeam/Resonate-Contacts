@@ -44,7 +44,7 @@ function ContactDetails(props) {
               <td className="no-pad">{user.address.zipcode}</td>
             </tr>
             <tr>
-              <td className="text-muted no-pad small-font">{user.address.geo.lat}°N, {user.address.geo.lng}°E.</td>
+              <td className="text-muted small-font top-padding">{user.address.geo.lat}°N, {user.address.geo.lng}°E</td>
             </tr>
           </tbody>
         </Table>
