@@ -3,6 +3,9 @@
   border-width: 0px 1px 0px 0px !important;
 }
 
+.fixed-column-width {
+  width: 100px;
+}
 .card-top {
   margin-bottom: 25px;
 }

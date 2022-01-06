@@ -1,4 +1,4 @@
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup, Form} from 'react-bootstrap';
 import './ContactList.css';
 import AvatarText from './AvatarText.js';
 import ContactDetails from './ContactDetails.js';
@@ -14,19 +14,41 @@ class ContactList extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      users: props.users,
+      isMobileDevice: props.isMobileDevice,
+      selectedId: state.selectedId
+    }
+  }
+
   contactClicked(id) {
     this.setState({ selectedId: id })
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      users: nextProps.users,
-      isMobileDevice: nextProps.isMobileDevice,
-    })
-  }
-
   render() {
-    const listItems = this.state.users == null ? (<div/>) : this.state.users.map((user) =>
+
+    const users = this.state.users
+
+    if (users == null) {
+      return null
+    }
+
+    // sort users by last name
+    const sortedUsers = users.sort((u1, u2) => {
+      const u1Lastname = u1.name.split(" ").pop()
+      const u2Lastname = u2.name.split(" ").pop()
+      if (u1Lastname > u2Lastname) {
+        return 1
+      } else if (u1Lastname < u2Lastname) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+    console.log(sortedUsers)
+
+    const listItems = users.map((user) =>
       <ListGroup.Item key={"listItem"+user.id} className="list-item" action onClick={() => this.contactClicked(user.id)}>
         <div className="flex align-center">
           <AvatarText name={user.name} width="40"/>
@@ -35,6 +57,11 @@ class ContactList extends React.Component {
           </div>
         </div>
       </ListGroup.Item>
+    )
+
+    // get the user id that was selected, to show detailed info
+    const selectedUser = users.find((u) => {
+      return u.id == this.state.selectedId}
     )
 
     return (
@@ -47,7 +74,7 @@ class ContactList extends React.Component {
           </Card>
         </div>
         <div className="contact-details">
-          <ContactDetails user={this.state.users == null ? null : this.state.users[this.state.selectedId - 1]} isMobileDevice={this.state.isMobileDevice}/>
+          <ContactDetails user={selectedUser} isMobileDevice={this.state.isMobileDevice}/>
         </div>
       </div>
     );

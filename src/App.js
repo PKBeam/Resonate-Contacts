@@ -17,7 +17,7 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    // get user data
+    // get user data from API
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(response => response.json())
     .then(json => {
@@ -35,7 +35,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <MainNavbar />

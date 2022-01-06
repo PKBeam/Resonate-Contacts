@@ -1,10 +1,13 @@
 .flex {
   display: flex;
-  max-width: 100vw;
+}
+
+.flex-col {
+/*  flex-direction: column;*/
 }
 
 .full-width {
-    width: 100%;
+  max-width: 100vw;
 }
 
 .text-bold {
