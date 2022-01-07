@@ -50,7 +50,6 @@
 
 .contact-list {
     word-wrap: break-word;
-/*    width: min(250px, 40%);*/
     max-height: calc(100vh - 60px);
 }
 

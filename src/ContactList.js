@@ -80,7 +80,7 @@ class ContactList extends React.Component {
       return u.id == this.state.selectedId}
     )
 
-    const contactListWidth = this.state.isMobileDevice ? "75px" : "40%";
+    const contactListWidth = this.state.isMobileDevice ? "75px" : "270px";
 
     const searchBar = (
       <Card className="square-corner p-2 search-bar-card">
@@ -92,7 +92,7 @@ class ContactList extends React.Component {
     )
     return (
       <div className="flex">
-        <div className="contact-list" style={{width: contactListWidth}}>
+        <div className="contact-list" style={{minWidth: contactListWidth, maxWidth: contactListWidth}}>
           {this.state.isMobileDevice ? "" : searchBar}
           <Card className="full-card scrollable square-corner">
             <ListGroup className="square-corner" variant="flush">

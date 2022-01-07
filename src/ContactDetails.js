@@ -8,7 +8,7 @@ function ContactDetails(props) {
   if (user == null) {
     return (
       <Card className="full-card square-corner">
-        <Card.Body className={props.isMobileDevice ? "" : "card-inside"}>
+        <Card.Body className={props.isMobileDevice ? "card-inside-mobile" : "card-inside"}>
         </Card.Body>
       </Card>
     )
@@ -82,7 +82,7 @@ function ContactDetails(props) {
 
   return (
     <Card className="full-card square-corner">
-      <Card.Body className={props.isMobileDevice ? "" : "card-inside"}>
+      <Card.Body className={props.isMobileDevice ? "card-inside-mobile" : "card-inside"}>
         <div className="flex card-top">
           <div className="flex align-start">
             <AvatarText name={user.name} width="50"/>

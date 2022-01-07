@@ -15,6 +15,12 @@
   padding: 30px !important;
 }
 
+.card-inside-mobile {
+  /* make card fill screen on mobile */
+  width: calc(100vw - 75px);
+  padding: 30px !important;
+}
+
 .square-corner {
   border-radius: 0% !important;
 }
