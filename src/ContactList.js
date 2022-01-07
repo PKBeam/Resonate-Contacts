@@ -62,11 +62,13 @@ class ContactList extends React.Component {
       }
     })
 
+    // generate list of contacts to display
     const listItems = users.map((user) =>
       <ListGroup.Item key={"listItem"+user.id} className="list-item" action onClick={() => this.contactClicked(user.id)}>
         <div className="flex align-center">
           <AvatarText name={user.name} width="40"/>
           <div className="left-margin">
+            {/* If rendering to a small screen, omit full name to save space*/}
             {this.state.isMobileDevice ? "" : user.name}
           </div>
         </div>
@@ -78,7 +80,8 @@ class ContactList extends React.Component {
       return u.id == this.state.selectedId}
     )
 
-    const contactListWidth = this.state.isMobileDevice ? "250px" : "40%";
+    const contactListWidth = this.state.isMobileDevice ? "75px" : "40%";
+
     const searchBar = (
       <Card className="square-corner p-2 search-bar-card">
          <InputGroup className="search-bar">
@@ -89,7 +92,7 @@ class ContactList extends React.Component {
     )
     return (
       <div className="flex">
-        <div className="contact-list" style={{width: {contactListWidth}}}>
+        <div className="contact-list" style={{width: contactListWidth}}>
           {this.state.isMobileDevice ? "" : searchBar}
           <Card className="full-card scrollable square-corner">
             <ListGroup className="square-corner" variant="flush">

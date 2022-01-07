@@ -21,10 +21,11 @@ function AvatarText(props) {
   return (
     <div className="list-avatar">
       <div className="avatar" style={{backgroundColor: colorForName(props.name)}}>
-          <svg className="square" style={{width: props.width + "px"}} viewBox='0 0 1 1'></svg>
-          <div className="avatar-text">
-              {firstInitial + lastInitial}
-          </div>
+        {/* CSS/HTML hack to force the div to be square */}
+        <svg className="square" style={{width: props.width + "px"}} viewBox='0 0 1 1'></svg>
+        <div className="avatar-text">
+            {firstInitial + lastInitial}
+        </div>
       </div>
     </div>
   );
